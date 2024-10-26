@@ -1,12 +1,13 @@
 local u = require("zanki._utils")
+local opts = require("zanki._config").options
 
 local M = {}
 
 -- Base
 function M.makefile_embed()
-  local filename = os.date("%Y%m%d%H%M%S")
+  local filename = os.date(opts.filename_format)
   local f = io.open("./Slipbox/" .. filename .. ".md", "w")
-  f:write("---\naliases: []\nparents: []\ntags: []\ntype: concept\n---\n\n\n\n\n---\n[Memo]\n\n\n---\n")
+  f:write(opts.newfile_template)
   f:close()
 
   u.insert(string.format("[[%s]]", filename))
