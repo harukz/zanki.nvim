@@ -4,60 +4,30 @@ local opts = require("zanki._config").options
 local M = {}
 
 -- Base
+
 function M.makefile_embed()
   local filename = os.date(opts.filename_format)
-  local f = io.open("./Slipbox/" .. filename .. ".md", "w")
+  local file = opts.slipbox_dir .. "/" .. filename .. ".md"
+  local f = io.open(file, "w")
+  if (f == nil) then
+    vim.api.nvim_notify(string.format("ERROR: Slipbox directory `%s` does not exist.\nPlease create.", opts.slipbox_dir), 1, {})
+    return
+  end
   f:write(opts.newfile_template)
   f:close()
-
   u.insert(string.format("[[%s]]", filename))
-  vim.api.nvim_command(":e ./Slipbox/" .. filename .. ".md")
+  vim.api.nvim_command(":e " .. file)
   vim.api.nvim_win_set_cursor(0, { 8, 0 })
 end
 
 function M.follow_link()
-  local line = vim.api.nvim_get_current_line()
-  local st = string.find(line, "%[%[")
-  if (st ~= nil) then
+  local link, st, ed = u.get_link()
+  if (link ~= nil) then
     local pos = vim.api.nvim_win_get_cursor(0)[2]
-    local ed = string.find(line, "%]%]")
     if (st <= pos and pos <= ed) then
-      local link = string.sub(line, st + 2, st + 15)
-
-      local pathes = {
-        string.format("./Inbox/%s.md", link),
-        string.format("./Slipbox/%s.md", link),
-        string.format("./Slipbox/%s", link),
-        string.format("%s.md", link),
-        string.format("%s", link),
-        string.format("%s", string.sub(line, st + 2, ed - 1)),
-      }
-
-      u.file_check_open(pathes)
+      u.file_check_open(link)
     end
   end
-end
-
-function M.split_follow()
-  local link = ""
-  local line = vim.api.nvim_get_current_line()
-  local st = string.find(line, "%[%[")
-  if (st ~= nil) then
-    local pos = vim.api.nvim_win_get_cursor(0)[2]
-    local ed = string.find(line, "%]%]")
-    if (st <= pos and pos <= ed) then
-      link = string.sub(line, st + 2, st + 15)
-    end
-  end
-  local pathes = {
-    string.format("./Inbox/%s.md", link),
-    string.format("./Slipbox/%s.md", link),
-    string.format("./Slipbox/%s", link),
-    string.format("%s.md", link),
-    string.format("%s", link),
-  }
-  vim.api.nvim_command(":vsplit")
-  u.file_check_open(pathes)
 end
 
 function M.next_link()
@@ -145,7 +115,7 @@ end
 -- MD utils
 
 function M.open_random()
-  local t = u.scandir("~/Zettel/Slipbox")
+  local t = u.scandir("./Slipbox")
   local choice = t[math.random(#t)]
   vim.api.nvim_command(":e " .. "./Slipbox/" .. choice)
   vim.api.nvim_win_set_cursor(0, { 8, 0 })

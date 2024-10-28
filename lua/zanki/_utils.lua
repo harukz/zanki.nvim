@@ -1,19 +1,32 @@
+local opts = require("zanki._config").options
 local M = {}
 
-function M.file_check_open(pathes)
-  -- open file if exists
+function M.get_link()
+  local line = vim.api.nvim_get_current_line()
+  local st = string.find(line, "%[%[")
+  local ed = string.find(line, "%]%]")
+  local link = nil
+  if (st ~= nil) then
+    link = string.sub(line, st + 2, st + 15)
+  end
+  return link, st, ed
+end
+
+function M.file_check_open(link)
   local found = false
-  for i = 1, #pathes do
-    if found then break end
-    local f = io.open(pathes[i], "r")
+  for i = 1, #(opts.search_pathes) do
+    local file = string.format(opts.search_pathes[i], link)
+    local f = io.open(file, "r")
     if f ~= nil then
       found = true
       io.close(f)
-      vim.api.nvim_command(":e " .. pathes[i])
+      vim.api.nvim_command(":e " .. file)
       vim.api.nvim_win_set_cursor(0, { 8, 0 })
     end
   end
-  if not found then print("file does not exist!") end
+  if not found then
+    vim.api.nvim_notify(string.format("ERROR: File `%s.md` does not exist.", link), 1, {})
+  end
 end
 
 function M.scandir(directory)

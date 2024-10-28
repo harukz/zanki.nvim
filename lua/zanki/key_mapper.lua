@@ -5,7 +5,6 @@ local functions = {
   -- lua functions
   makefile = mod.makefile_embed,
   follow_link = mod.follow_link,
-  split_follow = mod.split_follow,
   next_link = mod.next_link,
   prev_link = mod.prev_link,
   safe_del = mod.safe_del,

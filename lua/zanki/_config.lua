@@ -20,7 +20,16 @@ type: concept
 ---]]
 
 M.defaults.filename_format = "%Y%m%d%H%M%S"
+M.defaults.slipbox_dir = "./Slipbox"
+M.defaults.inbox_dir = "./Inbox"
 
+M.defaults.search_pathes = {
+  "./Inbox/%s.md",
+  "./Slipbox/%s.md",
+  "./Slipbox/%s",
+  "%s.md",
+  "%s",
+}
 
 M.config = {}
 
