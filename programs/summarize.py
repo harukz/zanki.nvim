@@ -39,7 +39,7 @@ def chap_info(refs, max_width):
             f.write("\n\n")
 
 def orphan_info():
-    orphan = [note for note in c.Note.Notes.values() if not note.parent and not note.child]
+    orphan = [note for note in c.Note.Notes.values() if ((not note.parent) and (not note.child) and (note.type != "tmp"))]
     with open("summary.md", "a", encoding="utf-8") as f:
         f.write(f"\nOrphan ({len(orphan)})\n")
         for note in orphan:
