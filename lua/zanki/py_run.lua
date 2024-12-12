@@ -2,7 +2,7 @@ local M = {}
 
 function M.summarize()
   os.execute("python " .. NV_TEST_PLUGIN_DIR .. "/programs/summarize.py ")
-  vim.api.nvim_command(":e " .. "./summary.md")
+  vim.api.nvim_command(":e " .. "./tmp.md")
 end
 
 
