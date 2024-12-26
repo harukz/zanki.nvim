@@ -4,6 +4,7 @@ local py = require("zanki.py_run")
 local functions = {
   -- lua functions
   makefile = mod.makefile_embed,
+  makeidea = mod.makeidea_embed,
   follow_link = mod.follow_link,
   next_link = mod.next_link,
   prev_link = mod.prev_link,

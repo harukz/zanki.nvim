@@ -20,6 +20,22 @@ function M.makefile_embed()
   vim.api.nvim_win_set_cursor(0, { 8, 0 })
 end
 
+function M.makeidea_embed()
+  local filename = os.date(opts.filename_format)
+  local file =  opts.ideabox_dir .. "/" .. filename .. ".md"
+  local f = io.open(file, "w")
+  if (f == nil) then
+    vim.api.nvim_notify(string.format("ERROR: Slipbox directory `%s` does not exist.\nPlease create.", opts.slipbox_dir), 1, {})
+    return
+  end
+  f:write(opts.newfile_template)
+  f:close()
+  u.insert(string.format("[[%s]]", filename))
+  vim.api.nvim_command(":e " .. file)
+  vim.api.nvim_win_set_cursor(0, { 8, 0 })
+end
+
+
 function M.follow_link()
   local link, st, ed = u.get_link()
   if (link ~= nil) then

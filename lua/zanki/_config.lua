@@ -22,11 +22,12 @@ type: concept
 M.defaults.filename_format = "%Y%m%d%H%M%S"
 M.defaults.slipbox_dir = "./Slipbox"
 M.defaults.inbox_dir = "./Inbox"
+M.defaults.ideabox_dir = "./Ideabox"
 
 M.defaults.search_pathes = {
   "./Inbox/%s.md",
   "./Slipbox/%s.md",
-  "./Slipbox/%s",
+  "./Ideabox/%s.md",
   "%s.md",
   "%s",
 }
