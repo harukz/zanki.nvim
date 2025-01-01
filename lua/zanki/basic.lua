@@ -115,7 +115,18 @@ function M.insert_alias()
       local vert = string.find(line, "|")
       if (vert == nil) then
         local link = string.sub(line, st + 2, st + 15)
-        local main_alias = (vim.inspect(u.get_alias(string.format("./Slipbox/%s.md", link))[1]))
+
+        local main_alias = ""
+        for i = 1, #(opts.search_pathes) do
+          local file = string.format(opts.search_pathes[i], link)
+          local f = io.open(file, "r")
+          if f ~= nil then
+            io.close(f)
+            main_alias = (vim.inspect(u.get_alias(file)[1]))
+            break
+          end
+        end
+
         if (main_alias ~= nil) then
           main_alias = string.gsub(main_alias, '"', "")
           line = string.gsub(line, link, link .. "|" .. main_alias)
