@@ -39,6 +39,7 @@ def update_anki(notes, links):
   bool_table = ac.invoke("canAddNotes", notes=notes)
 
   for i in range(len(bool_table)):
+    time.sleep(0.01)
     if (bool_table[i]):  
       ac.invoke("addNote", note=notes[i])
     else:  #updnate
