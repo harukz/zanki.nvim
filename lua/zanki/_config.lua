@@ -29,7 +29,7 @@ M.defaults.log_dir = "./Scrapbox/Log"
 M.defaults.search_pathes = {
   "./Inbox/%s.md",
   "./Slipbox/%s.md",
-  "./Ideabox/%s.md",
+  "./Scrapbox/Idea/%s.md",
   "./Log/%s.md",
   "%s.md",
   "%s",
