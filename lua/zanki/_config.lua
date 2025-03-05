@@ -24,7 +24,7 @@ M.defaults.daily_format = "%d%m%Y"
 M.defaults.slipbox_dir = "./Slipbox"
 M.defaults.inbox_dir = "./Inbox"
 M.defaults.ideabox_dir = "./Scrapbox/Idea"
-M.defaults.log_dir = "./Scrapbox/Log"
+M.defaults.log_dir = "./Log"
 
 M.defaults.search_pathes = {
   "./Inbox/%s.md",
