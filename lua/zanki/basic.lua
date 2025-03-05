@@ -44,7 +44,7 @@ function M.daily()
     vim.api.nvim_command(":e " .. file)
   else
     file_obj = io.open(file, "w")
-    file:close()
+    file_obj:close()
   end
 end
 
