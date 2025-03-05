@@ -1,5 +1,6 @@
 import _anki_connect as ac
 import _context as c
+import _variables as v
 import _utils as u
 import html
 from os.path import exists
@@ -15,7 +16,7 @@ def add_notes():
   notes = dict()
 
   for n in c.Note.Notes.values():
-    if (n.type not in c.notesA): 
+    if (n.type not in v.notesA): 
       continue
 
     notes[n.uid] = ({

@@ -1,5 +1,6 @@
 import _anki_connect as ac
 import _context as c
+import _variables as v
 
 
 def w2tmp(content):
@@ -30,7 +31,7 @@ def formatter(all):
 
 def sync():
   c.add_context()
-  all_z = [n.uid for n in c.Note.Notes.values() if n.type in c.notesA]
+  all_z = [n.uid for n in c.Note.Notes.values() if n.type in v.notesA]
   all_a = [note["fields"]["id"]["value"] for note in ac.invoke('notesInfo', notes=ac.invoke("findNotes", query="*"))]
 
   z_not_a = [uid for uid in all_z if uid not in all_a]

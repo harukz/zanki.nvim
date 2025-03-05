@@ -1,5 +1,6 @@
 import _utils as u
 import _context as c
+import _variables as v 
 from os.path import exists
 import glob
 
@@ -18,9 +19,9 @@ def section_checker():
     uid = file[10:-3]
     tag = frontmatter[3][5:].rstrip()
 
-    if ((tag in c.notesA or tag in c.notesC) and (len(sections) != 4)):
+    if ((tag in v.notesA or tag in v.notesC) and (len(sections) != 4)):
       fix.append(uid)
-    if ((tag in c.notesB) and (len(sections) != 5)):
+    if ((tag in v.notesB) and (len(sections) != 5)):
       fix.append(uid)
 
   return fix

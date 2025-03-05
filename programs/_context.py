@@ -1,11 +1,6 @@
 import re
 import glob
 
-notesA = ["concept", "structure", "context"]
-notesB = ["procedure", "question"]
-notesC = ["reference", "index", "memo", "tmp"]
-
-
 class Note():
   """
   This class assumes the notes are in the right format; code is position dependent. 
