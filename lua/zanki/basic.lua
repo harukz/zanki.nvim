@@ -37,14 +37,16 @@ end
 
 function M.daily()
   local filename = os.date(opts.daily_format)
-  local file = opts.log_dir .. "/" .. filename .. ".md"
+  local filepath = opts.log_dir .. "/" .. filename .. ".md"
 
-  local file_obj = io.open(file, "r")
+  local file_obj = io.open(filepath, "r")
   if file_obj then
-    vim.api.nvim_command(":e " .. file)
-  else
-    file_obj = io.open(file, "w")
     file_obj:close()
+    vim.api.nvim_command(":e " .. filepath)
+  else
+    file_obj = io.open(filepath, "w")
+    file_obj:close()
+    vim.api.nvim_command(":e " .. filepath)
   end
 end
 
