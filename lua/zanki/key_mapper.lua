@@ -22,6 +22,7 @@ local functions = {
   find_files = mod.find_files,
   insert_dependency = mod.insert_dependency,
   restore_file = mod.restore_file,
+  daily = mod.daily,
 
   -- python programs
   summarize = py.summarize,

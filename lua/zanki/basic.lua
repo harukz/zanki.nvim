@@ -35,6 +35,11 @@ function M.makeidea_embed()
   vim.api.nvim_win_set_cursor(0, { 8, 0 })
 end
 
+function M.daily()
+  local filename = os.date(opts.daily_format)
+  local file = opts.log_dir .. "/" .. filename .. ".md"
+  vim.api.nvim_command(":e " .. file)
+end
 
 function M.follow_link()
   local link, st, ed = u.get_link()
