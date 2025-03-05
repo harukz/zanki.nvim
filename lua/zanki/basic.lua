@@ -38,7 +38,14 @@ end
 function M.daily()
   local filename = os.date(opts.daily_format)
   local file = opts.log_dir .. "/" .. filename .. ".md"
-  vim.api.nvim_command(":e " .. file)
+
+  local file_obj = io.open(file, "r")
+  if file_obj then
+    vim.api.nvim_command(":e " .. file)
+  else
+    file_obj = io.open(file, "w")
+    file:close()
+  end
 end
 
 function M.follow_link()
