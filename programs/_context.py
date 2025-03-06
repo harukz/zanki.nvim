@@ -1,5 +1,6 @@
 import re
 import glob
+import _variables as v
 
 class Note():
   """
@@ -45,7 +46,7 @@ class Note():
     self.memo = sections[-2][7:].strip()
     self.tree = sections[-1].strip()
 
-    if (self.type in notesB):
+    if (self.type in v.notesB):
       self.front = sections[1].strip()
       self.back = sections[2].strip()
     else:

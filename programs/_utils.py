@@ -18,7 +18,7 @@ def formatter(all):
       f.write(f"---\naliases: [{', '.join(n.aliases)}]\n")
       f.write(f"parents: {n.require}\ntags: [{', '.join(sorted(list(set(n.tags))))}]\ntype: {n.type}\n---\n\n")
 
-      if (n.type not in c.notesB): # not pro or ques
+      if (n.type not in v.notesB): # not pro or ques
         f.write(f"# {n.title}\n")
       else:
         f.write(f"{n.front}\n\n---\n")
