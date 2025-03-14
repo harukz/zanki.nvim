@@ -21,8 +21,8 @@ def update_context():
       for s in note["tags"]:
         if s.startswith("NoteType::"):
           ins.type = s[10:]
-        else:
-          ins.tags.append(s.strip())
+        # else:
+        #   ins.tags.append(s.strip())
     except:
       pass
 
