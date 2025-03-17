@@ -41,7 +41,8 @@ class Note():
     self.aliases = [e.strip() for e in frontmatter[0][10:-1].split(",")]
     self.title = self.aliases[0]
     self.require = eval(frontmatter[1][9:].rstrip())
-    self.tags = [e.strip() for e in frontmatter[2][7:-1].rstrip().split(",") if e.strip() in ["leech", "image:True", "suspended"]]
+    # self.tags = [e.strip() for e in frontmatter[2][7:-1].rstrip().split(",") if e.strip() in ["leech", "image:True", "suspended"]]
+    self.tags = []
     self.type = frontmatter[3][6:].strip()
     self.memo = sections[-2][7:].strip()
     self.tree = sections[-1].strip()
